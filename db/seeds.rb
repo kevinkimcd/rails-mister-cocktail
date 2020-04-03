@@ -13,5 +13,12 @@ url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 ingredient = JSON.parse(open(url).read)
 
 ingredient["drinks"].each do |x|
-  Ingredient.create(name: x.values)
+  Ingredient.create(name: x["strIngredient1"])
 end
+
+new_cocktail = Cocktail.new(name: "Gin & Tonic")
+new_dose = Dose.new(description: "1 shot")
+new_dose.ingredient = Ingredient.find(3)
+new_dose.cocktail = new_cocktail
+new_dose.save
+new_cocktail.save
