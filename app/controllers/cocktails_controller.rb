@@ -8,13 +8,16 @@ class CocktailsController < ApplicationController
     @doses = @cocktail.doses
   end
 
-  # def new
-  #   @cocktail = Cocktail.new
-  # end
+  def new
+    @ingredients = Ingredient.all
+    @cocktail = Cocktail.new
+    @dose = Dose.new
+  end
 
-  # def create
-  #   @cocktail = Cocktail.new(cocktail_params)
-  # end
+  def create
+    @cocktail = Cocktail.new(cocktail_params)
+    @cocktail.dose = Dose.new(dose_params)
+  end
 
   # def edit
 
@@ -28,10 +31,14 @@ class CocktailsController < ApplicationController
 
   # end
 
-  # private
+  private
 
-  # def cocktail_params
-  #   params.require(:cocktail).permit(:name, :ingredients, :doses)
-  # end
+  def cocktail_params
+    params.require(:cocktail).permit(:name, :ingredients, :doses)
+  end
+
+  def dose_params
+    params.require(:dose).permit(:description, :ingredient)
+  end
 
 end

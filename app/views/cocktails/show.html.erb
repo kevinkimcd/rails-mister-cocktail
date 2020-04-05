@@ -2,4 +2,5 @@
 <% @doses.each do |dose| %>
   <%= dose.ingredient.name %>
   (<%= dose.description %>)
-<% end %>
+<% end %><br>
+<%= link_to "Go back", cocktails_path %>

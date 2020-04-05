@@ -1,0 +1,15 @@
+<% options = [] %>
+<% @ingredients.each do |ingredient| %>
+  <% options << ingredient.name %>
+<% end %>
+
+<%= form_for @cocktail do |f| %>
+  <%= f.text_field :name, placeholder: "Cocktail name" %><br>
+  <%= form_for @dose, url: {action: "create"} do |f| %>
+    <%= options_for_select(options, selected: f.object.ingredient) %>
+    <%= f.select :ingredient, options, class: 'js-searchable' %><br>
+    <%= f.text_field :description, placeholder: "Quantity" %>
+    <%= f.submit "Add ingredient" %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
