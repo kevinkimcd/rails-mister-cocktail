@@ -1,6 +1,7 @@
 <h1><%= @cocktail.name %></h1>
-<% @doses.each do |dose| %>
-  <%= dose.ingredient.name %>
-  (<%= dose.description %>)
+<% @cocktail.doses.each do |dose| %>
+  <p><%= dose.ingredient.name %>: <%= dose.description %></p>
 <% end %><br>
+
+<%= render "doses/new", cocktail: @cocktail, dose: @dose %>
 <%= link_to "Go back", cocktails_path %>
